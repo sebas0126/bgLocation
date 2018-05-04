@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova.plugin.bgLocation" version="0.0.1" 
+  xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>BgLocation</name>
+  <js-module name="BgLocation" src="www/BgLocation.js">
+    <clobbers target="cordova.plugins.BgLocation" />
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="BgLocation">
+        <param name="android-package" value="cordova.plugin.bgLocation.BgLocation" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml">
+      <!-- <service android:exported="true" android:name="cordova.plugin.bgLocation.LocationService" /> -->
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+      <service android:exported="true" android:name="cordova.plugin.bgLocation.LocationService" />
+    </config-file>
+    <source-file src="src/android/BgLocation.java" target-dir="src/cordova/plugin/bgLocation/BgLocation" />
+    <source-file src="src/android/LocationService.java" target-dir="src/cordova/plugin/bgLocation/BgLocation" />
+  </platform>
+</plugin>
